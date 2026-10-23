@@ -1,0 +1,23 @@
+version: 2
+
+sources:
+  - name: raw_eia
+    description: "Raw Natural Gas historical and daily batch data ingested from EIA API"
+    database: FINANCE_DB
+    schema: RAW
+    tables:
+      - name: NATURAL_GAS_PRICES_RAW
+        description: "Raw landed table for natural gas price series"
+        columns:
+          - name: PERIOD
+            description: "Date of the price reading in string/YYYY-MM-DD format"
+            tests:
+              - not_null
+          - name: SERIES_DESCRIPTION
+            description: "Full description of the gas price contract or series"
+          - name: VALUE
+            description: "Gas price value"
+            tests:
+              - not_null
+          - name: UNITS
+            description: "Measurement unit (e.g. $/MMBTU)"
